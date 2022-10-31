@@ -175,8 +175,7 @@ class MMKV {
       return ret;
     } else {
       final rootDirPtr = _string2Pointer(rootDir);
-      final androidInfo = await DeviceInfoPlugin().androidInfo;
-      final sdkInt = androidInfo.version.sdkInt ?? 0;
+      final sdkInt = await _channel.invokeMethod('getSdkVersion') ?? 0;
       final cacheDir = await getTemporaryDirectory();
       final cacheDirPtr = _string2Pointer(cacheDir.path);
 
